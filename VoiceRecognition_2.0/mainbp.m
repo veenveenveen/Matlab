@@ -14,7 +14,7 @@ T_train=[];
 T_test=[];
 for i=0:9
     for j=0:9
-        s = sprintf('voice_data/%i%i.wav',i,j);%把格式化的数据写入某个字符串中
+        s = sprintf('voice_data/train/%i%i.wav',i,j);%把格式化的数据写入某个字符串中
         [s1 fs1] = audioread(s);%读取
         v = mfcc(s1, fs1);%提取特征参数
         a= vqlbg(v, k); %量化
@@ -26,7 +26,7 @@ end
  %载入测试数据，并提取特征
 for i=0:9
     for j=0:9
-        s = sprintf('voice_data/%i0%i.wav',i,j);
+        s = sprintf('voice_data/test/%i0%i.wav',i,j);
         [s1 fs1] = audioread(s);
         v = mfcc(s1, fs1);
         a= vqlbg(v, k); 
@@ -78,4 +78,4 @@ YY=sim(net,b);
 [maxi,ypred]=max(YY);
 leibie = ypred-1  %显示类别标签
 
-save('VoiceRecognition_1.0/neting.mat','settings','net'); 
+save('VoiceRecognition_2.0/neting.mat','settings','net'); 
