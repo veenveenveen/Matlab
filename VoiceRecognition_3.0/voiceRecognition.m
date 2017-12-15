@@ -179,10 +179,10 @@ b=mapminmax('apply',a,settings);%归一
 YY=sim(net,b);
 
 [maxi,ypred]=max(YY);
-leibie=ypred-1  %显示类别标签
+leibie=ypred  %显示类别标签
 
 strss = {'我','要','一箱','多糖','少糖','正常','核桃','花生','牛奶'}
-str1=['识别结果',strss{leibie}]
+str1=['识别结果: ',strss{leibie}]
 msgbox(str1)
 
 % --- Executes on button press in pushbutton6.

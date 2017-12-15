@@ -27,7 +27,7 @@ strs = {'我','要','一箱','多糖','少糖','正常','核桃','花生','牛奶'}
 
 %载入训练数据，并提取特征
 T_train=[];
-T_test=[];
+%T_test=[];
 for i=1:9
     for j=1:9
         s = sprintf('voice_data3/train/%i%i.wav',i,j);%把格式化的数据写入某个字符串中
@@ -35,10 +35,11 @@ for i=1:9
         v = mfcc(s1, fs1);%提取特征参数
         a = vqlbg(v, k); %量化
         data_matrix=[data_matrix,a(:)];
-        T_train=[T_train,i+1];
+        T_train=[T_train,i];
     end
 end
 
+%{
  %载入测试数据，并提取特征
 for i=1:9
     for j=1:5
@@ -50,6 +51,7 @@ for i=1:9
         T_test=[T_test,i+1];
     end
 end
+%}
 
 %样本的标签
 %把data_matrix归一化处理变P_train，在范围（0,1）内，归一化主要是为了消除不同量纲对结果的影响
@@ -93,7 +95,7 @@ Accuracytest=n/size(P_test,2);
 %}
 
 %读取单个语音
-s = sprintf('voice_data3/%i.wav',4); 
+s = sprintf('voice_data3/%i.wav',1); 
 [s1 fs1] = audioread(s);%读取
 v = mfcc(s1, fs1);%提取特征参数
 a= vqlbg(v, k); %量化
@@ -101,8 +103,8 @@ a=a(:);
 b=mapminmax('apply',a,settings);%归一
 YY=sim(net,b);
 [maxi,ypred]=max(YY);
-leibie = ypred-1  %显示类别标签
+leibie = ypred  %显示类别标签
 
-res = strs{leibie+1}
+res = strs{leibie}
 
 save('VoiceRecognition_3.0/neting.mat','settings','net'); 
