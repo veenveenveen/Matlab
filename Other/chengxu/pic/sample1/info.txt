@@ -1,0 +1,5 @@
+训练步数：100
+使用样本夹：S
+测试夹：T
+netBP = newff(PR,[30,10,3],{'tansig','tansig','tansig'},'trainbfg');        %产生网络
+netBP.trainParam.epochs = 100;

@@ -103,7 +103,7 @@ Nfft=length(s1);%采样的长度
 T=1/fs1;%采样周期
 fs=1/T;%根据DFT的理论最大的 采样频率 为1/T
 f=fs*linspace(0,1,Nfft/2+1);%频率抽样
-ff1=2*abs(fft(s1,Nfft))/Nfft;%傅里叶变换获得频谱，为什么这么算 你自己看傅里叶变换的公式
+ff1=2*abs(fft(s1,Nfft))/Nfft;%傅里叶变换获得频谱
 %画X1的频谱
 axes(handles.axes2);
 plot(f,ff1(1:(Nfft/2+1)));
@@ -157,7 +157,7 @@ k=11;
 v = mfcc(s1, fs1);%提取特征参数
 a= vqlbg(v, k); %量化
 a=a(:);
-save VoiceRecognition_1.0/a.mat a
+save VoiceRecognition_2.0/a.mat a
 axes(handles.axes4);
 plot(a,'r')
 
@@ -177,6 +177,7 @@ end
 pause(1);
 b=mapminmax('apply',a,settings);%归一
 YY=sim(net,b);
+
 [maxi,ypred]=max(YY);
 leibie=ypred-1  %显示类别标签
 str1=['你所输入的数字是',num2str(leibie)];

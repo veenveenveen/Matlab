@@ -92,9 +92,14 @@ axes(handles.axes5);
 plot(lcc);
 
 %mfccº∆À„
+k=12;
 mcc = mfcc(voice,16000);
+a= vqlbg(mcc, k); %¡øªØ
+%a=a(:);
+a=minmax(a);
+a=a(:);
 axes(handles.axes6);
-plot(mcc);
+plot(a,'r');
 
 
 

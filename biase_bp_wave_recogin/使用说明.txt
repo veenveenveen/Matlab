@@ -1,0 +1,6 @@
+
+
+
+1,打开lpc_train  运行得到训练BP神经网络的模型
+2，打开lpc_train_test  运行是识别训练集语音数据
+3，打开lpc_recogin_test  运行是识别训练集语音数据
